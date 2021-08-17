@@ -8,7 +8,7 @@ export const Home: React.FC = () => {
   const [ids, setIds] = React.useState<StoriesIds>([]);
   const [loader, setLoader] = React.useState<boolean>(false);
   const [error, setError] = React.useState<boolean>(false);
-  const [currentPage, setCurrentPage] = React.useState<number>(4);
+  const [currentPage, setCurrentPage] = React.useState<number>(1);
   const perPage = 50;
   const totalElement = 500;
 
@@ -30,20 +30,15 @@ export const Home: React.FC = () => {
 
   return (
     <div className="home-container">
+      <Pagination
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+        totalPage={totalElement / perPage}
+      />
       {ids &&
         ids
           .slice((currentPage - 1) * perPage, currentPage * perPage)
           .map((id: StoryId, index: number) => <Story key={`${id}-${index}`} id={id} />)}
-      <div>
-        {[...Array(totalElement / perPage)].map((_, index: number) => (
-          <Pagination
-            onClick={() => setCurrentPage(index + 1)}
-            key={index}
-            currentPage={currentPage}
-            pageNumber={index + 1}
-          />
-        ))}
-      </div>
     </div>
   );
 };

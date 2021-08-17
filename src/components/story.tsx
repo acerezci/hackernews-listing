@@ -2,21 +2,43 @@ import React from "react";
 import { Story as StoryType, StoryId } from "../models";
 import { getStory } from "../service";
 import { mapTime } from "../utils";
+import { useHistory } from "react-router-dom";
 import "../styles/story.css";
 
 export const Story: React.FC<Props> = React.memo(({ id }) => {
   const [story, setStory] = React.useState<StoryType>();
   const [loading, setLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<boolean>(false);
+  const history = useHistory();
 
   React.useEffect(() => {
+    let mounted = true;
+
     setLoading(true);
     getStory(id)
-      .then((response) => response && setStory(response))
-      .catch(() => setError(true))
-      .finally(() => setLoading(false));
+      .then((response) => {
+        mounted && response && setStory(response);
+      })
+      .catch(() => {
+        mounted && setError(true);
+      })
+      .finally(() => {
+        mounted && setLoading(false);
+      });
+
+    return () => {
+      mounted = false;
+    };
   }, [id]);
-  console.log(story);
+
+  const openDetail = (id: number) => {
+    id && history.push(`/story-detail/${id}`);
+  };
+
+  const openUrl = (e: React.MouseEvent, url: string) => {
+    e.stopPropagation();
+    url && window.open(url, "_blank", "noreferrer");
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -27,13 +49,11 @@ export const Story: React.FC<Props> = React.memo(({ id }) => {
   }
 
   return (
-    <div className="story-container">
+    <React.Fragment>
       {story && !error && (
-        <React.Fragment>
-          <div className="story-title">
-            <a target="_blank" rel="noreferrer" href={story.url}>
-              {story.title}
-            </a>
+        <div className="story-container" onClick={() => openDetail(story.id)}>
+          <div onClick={(e) => openUrl(e, story.url)} className="story-title">
+            {story.title}
           </div>
           <div className="story-footer">
             <div className="story-by">
@@ -41,9 +61,9 @@ export const Story: React.FC<Props> = React.memo(({ id }) => {
             </div>
             <div className="story-time">{mapTime(story.time)}</div>
           </div>
-        </React.Fragment>
+        </div>
       )}
-    </div>
+    </React.Fragment>
   );
 });
 

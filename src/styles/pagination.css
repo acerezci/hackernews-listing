@@ -1,0 +1,19 @@
+.page-button-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin: 16px 0;
+}
+
+.page-button {
+  padding: 12px;
+  background-color: var(--color-dark-blue);
+  color: var(--color-white);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.current-page-button {
+  margin: 0 12px;
+}

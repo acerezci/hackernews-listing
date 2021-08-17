@@ -1,17 +1,34 @@
 import React from "react";
+import "../styles/pagination.css";
 
-export const Pagination: React.FC<Props> = ({ currentPage, pageNumber, onClick }) => {
+export const Pagination: React.FC<Props> = ({ currentPage, setCurrentPage, totalPage }) => {
+  const prevPage = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
+  const nextPage = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
   return (
-    <span
-      onClick={onClick}
-      className={currentPage === pageNumber ? "active-page-button" : "page-button"}>
-      {pageNumber}
-    </span>
+    <div className="page-button-container">
+      {currentPage > 1 && (
+        <div className="page-button" onClick={prevPage}>
+          Back
+        </div>
+      )}
+      <div className="page-button current-page-button">{currentPage}</div>
+      {currentPage < totalPage && (
+        <div className="page-button" onClick={nextPage}>
+          Next
+        </div>
+      )}
+    </div>
   );
 };
 
 interface Props {
   currentPage: number;
-  pageNumber: number;
-  onClick: () => void;
+  setCurrentPage: (e: number) => void;
+  totalPage: number;
 }
