@@ -49,3 +49,7 @@ strong,
 br {
   font-weight: bold;
 }
+
+a {
+  text-decoration: none;
+}

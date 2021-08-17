@@ -1,0 +1,39 @@
+.story-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--color-dark-gray);
+}
+
+.story-title {
+  font-size: 16px;
+}
+
+.story-title a {
+  color: var(--color-dark-blue);
+}
+
+.story-by {
+  font-size: 14px;
+  color: var(--color-dark-gray);
+  margin: 8px 0;
+}
+
+.story-by span {
+  font-weight: 500;
+}
+
+.story-footer {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.story-time {
+  color: var(--color-dark-gray);
+  font-size: 13px;
+}

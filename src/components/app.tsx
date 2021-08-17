@@ -1,9 +1,6 @@
 import React from "react";
+import { Home } from "../containers";
 
 export const App: React.FC = () => {
-  return (
-    <div>
-      <h1>APP</h1>
-    </div>
-  );
+  return <Home />;
 };
