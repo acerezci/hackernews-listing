@@ -1,0 +1,83 @@
+.story-detail-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 32px;
+  position: relative;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--color-dark-gray);
+}
+
+.id {
+  font-size: 14px;
+  margin-left: 4px;
+}
+
+.story {
+  text-transform: capitalize;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.header-right {
+  margin-left: 21px;
+}
+
+.header-right div {
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: var(--color-dark-gray);
+  font-weight: 500;
+}
+
+.score {
+  display: flex;
+  align-items: center;
+}
+
+.star {
+  width: 15px;
+  margin-left: 6px;
+}
+
+.created-by {
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 6px;
+}
+
+.url {
+  margin-bottom: 16px;
+}
+
+.url a {
+  color: var(--color-dark-blue);
+}
+
+.comment-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.back-button {
+  background-color: var(--color-dark-blue);
+  color: var(--color-white);
+  font-size: 18px;
+  font-weight: bold;
+  width: 85px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}

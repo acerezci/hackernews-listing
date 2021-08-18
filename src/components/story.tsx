@@ -37,7 +37,7 @@ export const Story: React.FC<Props> = React.memo(({ id }) => {
 
   const openUrl = (e: React.MouseEvent, url: string) => {
     e.stopPropagation();
-    url && window.open(url, "_blank", "noreferrer");
+    window.open(url, "_blank", "noreferrer");
   };
 
   if (loading) {
@@ -51,15 +51,15 @@ export const Story: React.FC<Props> = React.memo(({ id }) => {
   return (
     <React.Fragment>
       {story && !error && (
-        <div className="story-container" onClick={() => openDetail(story.id)}>
-          <div onClick={(e) => openUrl(e, story.url)} className="story-title">
+        <div className="story-container pointer" onClick={() => openDetail(story.id)}>
+          <div onClick={(e) => openUrl(e, story?.url || "#")} className="story-title">
             {story.title}
           </div>
           <div className="story-footer">
             <div className="story-by">
               Created By <span>{story.by}</span>
             </div>
-            <div className="story-time">{mapTime(story.time)}</div>
+            {story.time && <div className="story-time">{mapTime(story.time)}</div>}
           </div>
         </div>
       )}

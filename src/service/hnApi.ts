@@ -1,5 +1,5 @@
-import { storiesURL, storyURL } from "../config";
-import { StoriesIds, Story, StoryId } from "../models";
+import { commentURL, storiesURL, storyURL } from "../config";
+import { Comment, CommentId, StoriesIds, Story, StoryId } from "../models";
 
 export const getStoryIds = async (): Promise<StoriesIds> => {
   const result = await fetch(storiesURL);
@@ -13,4 +13,11 @@ export const getStory = async (id: StoryId): Promise<Story> => {
   const story: Story = await result.json();
 
   return story;
+};
+
+export const getComment = async (id: CommentId): Promise<Comment> => {
+  const result = await fetch(`${commentURL}${id}.json`);
+  const comment: Comment = await result.json();
+
+  return comment;
 };

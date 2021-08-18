@@ -13,14 +13,14 @@ export const Pagination: React.FC<Props> = ({ currentPage, setCurrentPage, total
   return (
     <div className="page-button-container">
       {currentPage > 1 && (
-        <div className="page-button" onClick={prevPage}>
-          Back
+        <div className="page-button pointer" onClick={prevPage}>
+          &#8610; Prev
         </div>
       )}
-      <div className="page-button current-page-button">{currentPage}</div>
+      <div className="page-button current-page-button pointer">{currentPage}</div>
       {currentPage < totalPage && (
-        <div className="page-button" onClick={nextPage}>
-          Next
+        <div className="page-button pointer" onClick={nextPage}>
+          Next &#8611;
         </div>
       )}
     </div>
